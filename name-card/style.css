@@ -1,0 +1,59 @@
+body {
+  position: relative;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  height: 100vh;
+}
+
+.wrapper::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  padding: 8px;
+  background-color: #333;
+  color: #fff;
+}
+
+.wrapper::before {
+  content: attr(data-label);
+}
+
+.card {
+  margin: auto;
+  box-shadow: 0 0 5px #999;
+}
+
+@media screen and (orientation: landscape) {
+  .wrapper {
+    width: 50vw;
+  }
+  
+  .wrapper:nth-child(2) {
+    top: 0;
+    left: 50vw;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  body {
+    height: 200vh;
+  }
+
+  .wrapper {
+    width: 100vw;
+  }
+  
+  .wrapper:nth-child(2) {
+    top: 100vh;
+    left: 0;
+  }
+}
