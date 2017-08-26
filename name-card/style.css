@@ -1,8 +1,7 @@
 body {
   position: relative;
   margin: 0;
-  height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .wrapper {
@@ -33,6 +32,11 @@ body {
 }
 
 @media screen and (orientation: landscape) {
+  body {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+  
   .wrapper {
     width: 50vw;
   }
@@ -46,6 +50,7 @@ body {
 @media screen and (orientation: portrait) {
   body {
     height: 200vh;
+    overflow-y: auto;
   }
 
   .wrapper {
