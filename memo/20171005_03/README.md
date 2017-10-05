@@ -35,3 +35,5 @@ $ sudo yum install nginx
 $ sudo systemctl start nginx
 $ sudo systemctl status nginx
 ```
+
+* ブラウザで表示確認
