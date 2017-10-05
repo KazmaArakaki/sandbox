@@ -51,3 +51,51 @@ define('DB_PASSWORD', 'twi1ight');
 ```
 $ sudo vim /etc/nginx/conf.d/default.conf
 ```
+
+```
+server {
+  listen 80;
+  server_name localhost_http;
+  
+  access_log /var/log/nginx/access.log;
+  error_log /var/log/nginx/error.log;
+
+  location / {
+    alias /var/www/wordpress/;
+    index index.php index.html;
+
+    location ~ \.php$ {
+      fastcgi_pass 127.0.0.1:9000;
+      fastcgi_split_path_info ^(.+\.php)(.*)$;
+      fastcgi_index index.php;
+      fastcgi_param SCRIPT_FILENAME /var/www/wordpress$fastcgi_script_name;
+      include fastcgi_params;
+    }
+  }
+}
+```
+
+### WordPressを/blog/以下で動かす
+
+```
+server {
+  listen 80;
+  server_name localhost_http;
+  
+  access_log /var/log/nginx/access.log;
+  error_log /var/log/nginx/error.log;
+
+  location /blog/ {
+    alias /var/www/wordpress/;
+    index index.php index.html;
+
+    location ~ \.php$ {
+      fastcgi_pass 127.0.0.1:9000;
+      fastcgi_split_path_info ^/blog(.+\.php)(.*)$;
+      fastcgi_index index.php;
+      fastcgi_param SCRIPT_FILENAME /var/www/wordpress$fastcgi_script_name;
+      include fastcgi_params;
+    }
+  }
+}
+```
