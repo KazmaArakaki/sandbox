@@ -18,7 +18,9 @@ $ vim index.php
   <dt>date</dt>
   <dd><?php echo htmlspecialchars(get_the_date("Y.m.d D", $post -> ID), ENT_QUOTES); ?></dd>
   <dt>content</td>
-  <dd><?php echo htmlspecialchars($post -> post_content); ?></dd>
+  <dd><?php echo htmlspecialchars($post -> post_content, ENT_QUOTES); ?></dd>
+  <dt>permalink</dt>
+  <dd><?php echo get_permalink($post -> ID); ?></dd>
 </dl>
 
 <?php endforeach; ?>
