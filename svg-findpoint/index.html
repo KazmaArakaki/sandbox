@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    body {
+      margin: 24px 0 0;
+    }
+    .controller {
+      position: fixed;
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .container_svg {
+      width: 100%;
+      height: calc(100vh - 24px);
+      overflow: scroll;
+    }
+  </style>
+</head>
+<body>
+  <p class="controller">
+    x: <span id="x"></span>, y: <span id="y"></span>
+  </p>
+
+  <div class="container_svg">
+    <svg id="svg" version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="210mm" height="297mm"
+        viewBox="0 0 210 297">
+      <!--
+        - 背景
+        -->
+      <g>
+        <rect x="0" y="0" width="100%" height="100%" fill="gray" />
+        <image
+            x="0" y="0"
+            height="297"
+            xlink:href="../4400/原本/4401.jpg"
+            transform="translate(0 0) scale(1 1) rotate(0) skewX(0) skewY(0)"
+        />
+      </g>
+
+      <!--
+        - ポインター
+        -->
+      <g fill="none" stroke="green" stroke-width="0.1">
+        <path id="pointer" d="" />
+      </g>
+    </svg>
+  </div>
+ 
+  <script>
+    (elems => {
+      let x = 0;
+      let y = 0;
+
+      elems.svg.addEventListener("click", event => {
+        const p = getSVGPoint(elems.svg, event.clientX, event.clientY);
+
+        x = Number(p.x.toFixed(1));
+        y = Number(p.y.toFixed(1));
+
+        setPointer();
+      });
+
+      window.addEventListener("keypress", event => {
+        if(event.key == "a") {
+          const width = Number(elems.svg.getAttributeNS(null, "width").replace("mm", ""));
+          const height = Number(elems.svg.getAttributeNS(null, "height").replace("mm", ""));
+
+          elems.svg.setAttributeNS(null, "width", (width * 1.1) + "mm");
+          elems.svg.setAttributeNS(null, "height", (height * 1.1) + "mm");
+        }
+        if(event.key == "s") {
+          const width = Number(elems.svg.getAttributeNS(null, "width").replace("mm", ""));
+          const height = Number(elems.svg.getAttributeNS(null, "height").replace("mm", ""));
+
+          elems.svg.setAttributeNS(null, "width", (width * 0.9) + "mm");
+          elems.svg.setAttributeNS(null, "height", (height * 0.9) + "mm");
+        }
+        if(event.key == "q") {
+          const width = Number(elems.svg.getAttributeNS(null, "width").replace("mm", ""));
+          const height = Number(elems.svg.getAttributeNS(null, "height").replace("mm", ""));
+
+          elems.svg.setAttributeNS(null, "width", (width * 1.5) + "mm");
+          elems.svg.setAttributeNS(null, "height", (height * 1.5) + "mm");
+        }
+        if(event.key == "w") {
+          const width = Number(elems.svg.getAttributeNS(null, "width").replace("mm", ""));
+          const height = Number(elems.svg.getAttributeNS(null, "height").replace("mm", ""));
+
+          elems.svg.setAttributeNS(null, "width", (width * 0.5) + "mm");
+          elems.svg.setAttributeNS(null, "height", (height * 0.5) + "mm");
+        }
+        if(event.key == "h") {
+          x -= 0.1;
+
+          setPointer();
+        }
+        if(event.key == "j") {
+          y += 0.1;
+          
+          setPointer();
+        }
+        if(event.key == "k") {
+          y -= 0.1;
+          
+          setPointer();
+        }
+        if(event.key == "l") {
+          x += 0.1;
+          
+          setPointer();
+        }
+      });
+
+      function setPointer() {
+        elems.x.textContent = x;
+        elems.y.textContent = y;
+
+        elems.pointer.setAttributeNS(null, "d", (() => {
+          return `M${x},0L${x},999M0,${y}L999,${y}`;
+        })());
+      }
+    
+      function getSVGPoint(svg, clientX, clientY) {
+        return Object.assign(svg.createSVGPoint(), {
+          "x": clientX,
+          "y": clientY
+        }).matrixTransform(svg.getScreenCTM().inverse());
+      }
+    })({
+      "controller": document.getElementById("controller"),
+      "x": document.getElementById("x"),
+      "y": document.getElementById("y"),
+      "svg": document.getElementById("svg"),
+      "pointer": document.getElementById("pointer")
+    });
+  </script>
+</body>
+</html>
