@@ -1,0 +1,35 @@
+<ul>
+  <li>
+    x:
+    <input id="x-from">
+    -%gt;
+    <input id="x-to">
+  </li>
+  <li>
+    x:
+    <input id="y-from">
+    -%gt;
+    <input id="y-to">
+  </li>
+</ul>
+
+<script>
+(elem => {
+  xFrom = Number(elem.x.from.value);
+  xTo = Number(elem.x.to.value);
+  yFrom = Number(elem.y.from.value);
+  yTo = Number(elem.y.to.value);
+
+  console.log("x: " + (xFrom + (xTo - xFrom) / 2));
+  console.log("y: " + (yFrom + (yTo - yFrom) / 2));
+})({
+  "x": {
+    "from": document.getElementById("x-from"),
+    "to": document.getElementById("x-to")
+  },
+  "y": {
+    "from": document.getElementById("y-from"),
+    "to": document.getElementById("y-to")
+  }
+});
+</script>
