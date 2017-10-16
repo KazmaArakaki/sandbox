@@ -2,26 +2,31 @@
   <li>
     x:
     <input id="x-from">
-    -%gt;
+    -&gt;
     <input id="x-to">
   </li>
   <li>
     x:
     <input id="y-from">
-    -%gt;
+    -&gt;
     <input id="y-to">
+  </li>
+  <li>
+    <button id="submit">submit</button>
   </li>
 </ul>
 
 <script>
-(elem => {
-  xFrom = Number(elem.x.from.value);
-  xTo = Number(elem.x.to.value);
-  yFrom = Number(elem.y.from.value);
-  yTo = Number(elem.y.to.value);
+(elems => {
+  elems.submit.addEventListener("click", () => {
+    xFrom = Number(elems.x.from.value);
+    xTo = Number(elems.x.to.value);
+    yFrom = Number(elems.y.from.value);
+    yTo = Number(elems.y.to.value);
 
-  console.log("x: " + (xFrom + (xTo - xFrom) / 2));
-  console.log("y: " + (yFrom + (yTo - yFrom) / 2));
+    console.log("x: " + (xFrom + (xTo - xFrom) / 2));
+    console.log("y: " + (yFrom + (yTo - yFrom) / 2));
+  });
 })({
   "x": {
     "from": document.getElementById("x-from"),
@@ -30,6 +35,7 @@
   "y": {
     "from": document.getElementById("y-from"),
     "to": document.getElementById("y-to")
-  }
+  },
+  "submit": document.getElementById("submit")
 });
 </script>
