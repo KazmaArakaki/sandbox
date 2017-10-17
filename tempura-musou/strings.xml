@@ -1,0 +1,61 @@
+<resources>
+  <string name="app_name">Tempura Musou</string>
+  <string name="tag_country">Country</string>
+
+  <string-array name="country_codes">
+    <item>br</item>
+    <item>cn</item>
+    <item>fr</item>
+    <item>kh</item>
+    <item>us</item>
+    <item>zn</item>
+  </string-array>
+
+  <array name="images_br">
+    <item>@drawable/br_001</item>
+  </array>
+
+  <array name="images_cn">
+    <item>@drawable/cn_001</item>
+  </array>
+
+  <array name="images_fr">
+    <item>@drawable/fr_001</item>
+  </array>
+
+  <array name="images_kh">
+    <item>@drawable/kh_001</item>
+  </array>
+
+  <array name="images_us">
+    <item>@drawable/us_001</item>
+  </array>
+
+  <array name="images_zn">
+    <item>@drawable/zn_001</item>
+  </array>
+
+  <string-array name="quizzes_br">
+    <item>ブラジルクイズ</item>
+  </string-array>
+
+  <string-array name="quizzes_cn">
+    <item>中国クイズ</item>
+  </string-array>
+
+  <string-array name="quizzes_fr">
+    <item>フランスクイズ</item>
+  </string-array>
+
+  <string-array name="quizzes_kh">
+    <item>カンボジアクイズ</item>
+  </string-array>
+
+  <string-array name="quizzes_us">
+    <item>アメリカクイズ</item>
+  </string-array>
+
+  <string-array name="quizzes_zn">
+    <item>南アフリカクイズ</item>
+  </string-array>
+</resources>
