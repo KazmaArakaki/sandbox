@@ -1,116 +1,112 @@
 package com.tempura.tempuramusou;
 
 import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
+import android.content.res.TypedArray;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-public class QuestActivity extends AppCompatActivity {
-  private final int TURN_MAX = 5;
-  private TextView quizText;
-  private ImageView[] quizChoices;
+public class TempuraQuizMaster {
+  private final int NUM_CHOICES = 4;
+  private Context context;
+  private String[] countryCodes;
+  private int turnCount;
+  private int turnCountMax;
+  private Country[] countries;
 
-  @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_quest);
+  TempuraQuizMaster(Context context) {
+    this.context = context;
+    countryCodes = context.getResources().getStringArray(R.array.country_codes);
+    countries = new Country[NUM_CHOICES];
+  }
 
-    quizText = (TextView) findViewById(R.id.text_quiz);
-    quizChoices = new ImageView[] {
-        (ImageView) findViewById(R.id.image_1),
-        (ImageView) findViewById(R.id.image_2),
-        (ImageView) findViewById(R.id.image_3),
-        (ImageView) findViewById(R.id.image_4)
+  void init() {
+    Log.d("init", "_");
+
+    this.turnCount = 0;
+    int[] randomNumbers = TempuraUtil.getRandomNumbers(NUM_CHOICES, 0, countryCodes.length - 1, true);
+
+    for(int i = 0; i < NUM_CHOICES; i++) {
+      countries[i] = new Country();
+      countries[i].id = randomNumbers[i];
     };
 
-    new TempuraQuiz(this).start(TURN_MAX);
+    this.onInit(this.countries);
+    next();
   }
 
-  private class TempuraQuiz extends TempuraQuizMaster {
-    TempuraQuiz(Context context) {
-      super(context);
+  void next() {
+    Log.d("next", "_");
+
+    this.turnCount++;
+    Country nextCountry = countries[(int) (Math.random() * countries.length)];
+
+    if(this.turnCount <= this.turnCountMax) {
+      this.onTurn(turnCount, nextCountry.getQuiz(), nextCountry.getId());
     }
-
-    @Override
-    void onInit(Country[] countries) {
-      super.onInit(countries);
-
-      for(int i = 0; i < quizChoices.length; i++) {
-        quizChoices[i].setTag(R.string.tag_country, countries[i]);
-        quizChoices[i].setImageResource(countries[i].getImageResourceId());
-      }
-    }
-
-    @Override
-    void onTurn(int turnCount, String quiz, int answer) {
-      super.onTurn(turnCount, quiz, answer);
-
-      quizText.setText(turnCount + ": " + quiz);
-
-      Runnable correctCallback = new Runnable () {
-        @Override
-        public void run() {
-          Toast.makeText(QuestActivity.this, "Good", Toast.LENGTH_SHORT).show();
-          next();
-        }
-      };
-
-      Runnable wrongCallback = new Runnable() {
-        @Override
-        public void run() {
-          Toast.makeText(QuestActivity.this, "Bad", Toast.LENGTH_SHORT).show();
-          next();
-        }
-      };
-
-      for(int i = 0; i < quizChoices.length; i++) {
-        quizChoices[i].setOnClickListener(
-            new OnImageClickListener(
-                QuestActivity.this,
-                answer,
-                correctCallback,
-                wrongCallback
-            )
-        );
-      }
-    }
-
-    @Override
-    void onFinish() {
-      super.onFinish();
-
-      new TempuraQuiz(QuestActivity.this).start(TURN_MAX);
+    else {
+      this.onFinish();
     }
   }
 
-  private class OnImageClickListener implements View.OnClickListener {
-    Context context;
-    int answer;
-    Runnable correctCallback;
-    Runnable wrongCallback;
+  void onFinish() {
+    Log.d("onFinish", "_");
+  }
 
-    OnImageClickListener(Context context, int answer, Runnable correctCallback, Runnable wrongCallback) {
-      this.context = context;
-      this.answer = answer;
-      this.correctCallback = correctCallback;
-      this.wrongCallback = wrongCallback;
+  void onInit(Country[] countries) {
+    String countriesListStr = "";
+    for(Country country: countries) {
+      countriesListStr += country.getCode() + ", ";
     }
 
-    @Override
-    public void onClick(View view) {
-      if(((TempuraQuizMaster.Country) view.getTag(R.string.tag_country)).getId() == answer) {
-        correctCallback.run();
-      }
-      else {
-        wrongCallback.run();
-      }
+    Log.d("onInit", "countries: " + countriesListStr);
+  }
+
+  void onTurn(int turnCount, String quiz, int answer) {
+    Log.d("onTurn", "turnCount: " + turnCount + ", quiz: " + quiz + ", answer: " + answer);
+  }
+
+  void start(int turnCountMax) {
+    Log.d("start", "turnCountMax: " + turnCountMax);
+
+    this.turnCountMax = turnCountMax;
+
+    this.init();
+  }
+
+  class Country {
+    private int id;
+
+    void setId(int id) {
+      this.id = id;
+    }
+
+    int getId() {
+      return this.id;
+    }
+
+    String getCode() {
+      return countryCodes[this.id];
+    }
+
+    int getImageResourceId() {
+      int resId = context.getResources().getIdentifier(
+          "images_" + this.getCode(),
+          "array",
+          context.getPackageName()
+      );
+
+      return context.getResources().obtainTypedArray(resId).getResourceId(0, 0);
+    }
+
+    String getQuiz() {
+      int resId = context.getResources().getIdentifier(
+          "quizzes_" + this.getCode(),
+          "array",
+          context.getPackageName()
+      );
+
+      String[] quizzes = context.getResources().getStringArray(resId);
+
+      return quizzes[(int) (Math.random() * quizzes.length)];
     }
   }
 }
