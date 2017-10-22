@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string-array name="country_codes">
+    <item>br</item>
+    <item>cn</item>
+    <item>fr</item>
+    <item>kh</item>
+    <item>us</item>
+    <item>za</item>
+    <item>th</item>
+    <item>it</item>
+  </string-array>
+
+  <array name="images_br">
+    <item>@drawable/br_001</item>
+  </array>
+
+  <array name="images_cn">
+    <item>@drawable/cn_001</item>
+  </array>
+
+  <array name="images_fr">
+    <item>@drawable/fr_001</item>
+  </array>
+
+  <array name="images_kh">
+    <item>@drawable/kh_001</item>
+  </array>
+
+  <array name="images_us">
+    <item>@drawable/us_001</item>
+  </array>
+
+  <array name="images_za">
+    <item>@drawable/za_001</item>
+  </array>
+
+  <array name="images_th">
+    <item>@drawable/th_001</item>
+  </array>
+
+  <array name="images_it">
+    <item>@drawable/it_001</item>
+  </array>
+
+  <string-array name="quizzes_br">
+    <item>伯剌西爾←この国はどこ？</item>
+    <item>アマゾン川の河口がある場所はどこ？</item>
+    <item>リオデジャネイロで行われるカーニバルで有名な国はは？</item>
+    <item>キングカズのいっていたサントスFCがある国はどこ？</item>
+    <item>世界三大名瀑イグアスの滝がある国はどこ？</item>
+    <item>名所コルコバードの丘がある国はどこ？</item>
+    <item>サルバドール空港がある国はどこ？</item>
+    <item>サッカーワールドカップで優勝回数が最も多い国はどれ？</item>
+    <item>ブラジリアが首都の国はどこ？</item>
+    <item>通貨レアルが使われている国はどこ？</item>
+  </string-array>
+
+  <string-array name="quizzes_cn">
+    <item>万里の長城</item>
+    <item>天安門</item>
+    <item>天壇公園</item>
+    <item>故宮博物院</item>
+    <item>胡同</item>
+    <item>頤和園</item>
+    <item>外灘</item>
+    <item>上海</item>
+    <item>北京</item>
+    <item>西安</item>
+  </string-array>
+
+  <string-array name="quizzes_fr">
+    <item>ジネディーヌ・ジダンの母国はどこ？</item>
+    <item>百年戦争で有名なジャンヌ・ダルクの母国はどこ？</item>
+    <item>ルーブル美術館</item>
+    <item>エッフェル塔</item>
+    <item>ヴェルサイユ宮殿</item>
+    <item>カンヌ国際映画祭</item>
+    <item>アルセーヌ・ルパン</item>
+    <item>仏蘭西←この国はどこ？</item>
+    <item>19世紀最後に万博とオリンピックが同時開催された国はどこ？</item>
+    <item>首都がパリの国はどこ？</item>
+    <item>ワインで有名なブルゴーニュ地方がある国はどこ？</item>
+  </string-array>
+
+  <string-array name="quizzes_kh">
+    <item>名所：アンコールワット遺跡群</item>
+    <item>名所：プレアヴィヒア遺跡</item>
+    <item>名物：胡椒、シルクのストール、影絵芝居</item>
+    <item>首都：プノンペン</item>
+    <item>公用語：クメール語</item>
+    <item>原産：カボチャ</item>
+    <item>歴史：ポルポト派の虐殺</item>
+    <item>通貨：リエル</item>
+    <item>隣国：タイ、ベトナム、ラオスのみ</item>
+    <item>国王：ノロドム・シハモニ（2004年〜）</item>
+  </string-array>
+
+  <string-array name="quizzes_us">
+    <item>ニューヨーク</item>
+    <item>ラスベガス</item>
+    <item>ゴールデンゲートブリッジ</item>
+    <item>ディズニーワールド</item>
+    <item>ハリウッド</item>
+    <item>シカゴ</item>
+    <item>メトロポリタン美術館</item>
+    <item>グランドキャニオン</item>
+    <item>ハーバード大学</item>
+    <item>オーケー牧場</item>
+  </string-array>
+
+  <string-array name="quizzes_za">
+    <item>名所：喜望峰</item>
+    <item>名所：テーブルマウンテン</item>
+    <item>歴史：アパルトヘイト</item>
+    <item>人物：ネルソン・マンデラ</item>
+    <item>最大都市：ヨハネスブルク</item>
+    <item>隣国：モザンビーク、レソトほか</item>
+    <item>通貨：ランド</item>
+    <item>開催：2010年サッカーW杯</item>
+    <item>世界一位：クロム、マンガン、プラチナの産出</item>
+    <item>首都：プレトリア、ケープタウン、ブルームフォンテーン</item>
+  </string-array>
+
+  <string-array name="quizzes_th">
+    <item>通貨：バーツ</item>
+    <item>映画：戦場にかける橋</item>
+    <item>料理：グリーンカレー</item>
+    <item>料理：トムヤムクン</item>
+    <item>観光地：プーケット島</item>
+    <item>観光地：パタヤビーチ</item>
+    <item>名所：アユタヤ遺跡</item>
+    <item>人物：ブアカーオ</item>
+    <item>国王：ラーマ１０世</item>
+    <item>首都：クルンテープ・マハーナコーン</item>
+  </string-array>
+
+  <string-array name="quizzes_it">
+    <item>車：フェラーリ</item>
+    <item>飲み物：カフェ・エスプレッソ</item>
+    <item>食べ物：パルマハム</item>
+    <item>ブランド：Gucci</item>
+    <item>人物：ガリレオ・ガリレイ</item>
+    <item>人物：レオナルド・ダ・ヴィンチ</item>
+    <item>観光地：フィレンツェ</item>
+    <item>観光地：ベネチア</item>
+    <item>名所：コロッセオ</item>
+    <item>首都：ローマ</item>
+  </string-array>
+</resources>
