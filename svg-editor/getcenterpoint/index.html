@@ -14,6 +14,12 @@
   <li>
     <button id="submit">submit</button>
   </li>
+  <li>
+    shift x:
+    <input id="x-shift">
+    shift y:
+    <input id="y-shift">
+  </li>
 </ul>
 
 <script>
@@ -21,20 +27,27 @@
   elems.submit.addEventListener("click", () => {
     xFrom = Number(elems.x.from.value);
     xTo = Number(elems.x.to.value);
+    xShift = Number(elems.x.shift.value);
     yFrom = Number(elems.y.from.value);
     yTo = Number(elems.y.to.value);
+    yShift = Nuber(elems.y.shift.value);
+    
+    const xCenter = ((xFrom + (xTo - xFrom) / 2) + xShift).toFixed(2);
+    const yCenter = ((yFrom + (yTo - yFrom) / 2) + yShift).toFixed(2);
 
-    console.log("x: " + (xFrom + (xTo - xFrom) / 2));
-    console.log("y: " + (yFrom + (yTo - yFrom) / 2));
+    console.log("x: " + xCenter);
+    console.log("y: " + yCenter);
   });
 })({
   "x": {
     "from": document.getElementById("x-from"),
-    "to": document.getElementById("x-to")
+    "to": document.getElementById("x-to"),
+    "shift": document.getElementById("x-shift")
   },
   "y": {
     "from": document.getElementById("y-from"),
-    "to": document.getElementById("y-to")
+    "to": document.getElementById("y-to"),
+    "shift": document.getElementById("y-shift")
   },
   "submit": document.getElementById("submit")
 });
