@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>SVG Button Generator</title>
+  <style>
+    .svg {
+      width: 120px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <ul>
+    <li>
+      <label>
+        x:
+        <input id="x">
+      </label>
+      <label>
+        y:
+        <input id="y">
+      </label>
+    </li>
+    <li>
+      <label>
+        w:
+        <input id="w">
+      </label>
+      <label>
+        h:
+        <input id="h">
+      </label>
+    </li>
+    <li>
+      <label>
+        b w:
+        <input id="bw">
+      </label>
+      <label>
+        b h:
+        <input id="bh">
+      </label>
+    </li>
+  </ul>
+
+  <p>
+    <button id="submit">Submit</button>
+  </p>
+
+  <p>
+    <svg id="svg" class="svg"></svg>
+  </p>
+
+  <script>
+    (elems => {
+      elems.submit.addEventListener("click", event => {
+        const x = Number(elems.field.x.value);
+        const y = Number(elems.field.y.value);
+        const width = Number(elems.field.w.value);
+        const height = Number(elems.field.h.value);
+        const widthB = Number(elems.field.bw.value);
+        const heightB = Number(elems.field.bh.value);
+
+        const wrapper = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        
+        svg.setAttributeNS(null, "width", width);
+        svg.setAttributeNS(null, "height", height);
+        svg.setAttributeNS(null, "viewBox", x + " " + y + " " + width + " " + height);
+
+        wrapper.setAttributeNS(null, "fill", "red");
+        wrapper.setAttributeNS(null, "stroke", "none");
+        
+        rect.setAttributeNS(null, "x", x);
+        rect.setAttributeNS(null, "y", y);
+        rect.setAttributeNS(null, "width", width);
+        rect.setAttributeNS(null, "height", height);
+        
+        path.setAttributeNS(null, "fill", "white");
+        path.setAttributeNS(null, "opacity", "0.5");
+        path.setAttributeNS(null, "d", ((cx, cy) => {
+          return "M" + cx + "," + (cy - (heightB / 2)) +
+              "C" + (cx + (widthB / 2) - 1) + "," + (cy - (heightB / 2)) +
+              " " + (cx + (widthB / 2)) + "," + (cy - (heightB / 2) + 1) +
+              " " + (cx + (widthB / 2)) + "," + (cy - (heightB / 2) + 2) +
+              "L" + (cx + (widthB / 2)) + "," + (cy + (heightB / 2) - 2) +
+              "C" + (cx + (widthB / 2)) + "," + (cy + (heightB / 2) - 1) +
+              " " + (cx + (widthB / 2) - 1) + "," + (cy + (heightB / 2)) +
+              " " + cx + "," + (cy + (heightB / 2)) +
+              "C" + (cx - (widthB / 2) + 1) + "," + (cy + (heightB / 2)) +
+              " " + (cx - (widthB / 2)) + "," + (cy + (heightB / 2) - 1) +
+              " " + (cx - (widthB / 2)) + "," + (cy + (heightB / 2) - 2) +
+              "L" + (cx - (widthB / 2)) + "," + (cy - (heightB / 2) + 2) +
+              "C" + (cx - (widthB / 2)) + "," + (cy - (heightB / 2) + 1) +
+              " " + (cx - (widthB / 2) + 1) + "," + (cy - (heightB / 2)) +
+              " " + cx + "," + (cy - (heightB / 2)) +
+              "Z";
+        })(x + width / 2, y + height / 2));
+
+        wrapper.appendChild(rect);
+        wrapper.appendChild(path);
+
+        svg.appendChild(wrapper);
+      });
+    })({
+      "svg": document.getElementById("svg"),
+      "submit": document.getElementById("submit"),
+      "field": {
+        "x": document.getElementById("x"),
+        "y": document.getElementById("y"),
+        "w": document.getElementById("w"),
+        "h": document.getElementById("h"),
+        "bw": document.getElementById("bw"),
+        "bh": document.getElementById("bh"),
+      }
+    });
+  </script>
+</body>
+</html>
