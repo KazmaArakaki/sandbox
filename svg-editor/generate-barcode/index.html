@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Barcode Generater</title>
+</head>
+<body>
+  <p>
+    <input id="input">
+  </p>
+  
+  <p>
+    <svg id="svg" height="40" width="200"></svg>
+  </svg>
+  
+  <script>
+    (() => {
+      const elems = {
+        "input": document.getElementById("input"),
+        "svg": document.getElementById("svg")
+      };
+      
+      elems.input.addEventListener("input", ev => {
+        elems.svg.innerHTML = "";
+        
+        let pointer = 0;
+        
+        elems.input.value.split("").map(datum => Number(datum)).forEach((datum, i) => {
+          const bar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          
+          bar.setAttributeNS(null, "x", pointer);
+          bar.setAttributeNS(null, "y", 0);
+          bar.setAttributeNS(null, "height", 20);
+          bar.setAttributeNS(null, "width", datum);
+          bar.setAttributeNS(null, "fill", (i % 2 == 0? "black": "white"));
+          
+          elems.svg.appendChild(bar);
+          
+          pointer += datum;
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
