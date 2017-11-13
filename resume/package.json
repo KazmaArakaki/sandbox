@@ -1,0 +1,31 @@
+{
+  "name": "node_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "node -r babel-register server",
+    "build:jsx": "node node_modules/webpack/bin/webpack"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "css-loader": "^0.28.7",
+    "css-module-resolver": "0.0.3",
+    "express": "^4.16.2",
+    "mysql": "^2.15.0",
+    "pdfkit": "^0.8.3",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-swipe": "^5.1.0",
+    "style-loader": "^0.19.0",
+    "svg-url-loader": "^2.3.0",
+    "swipe-js-iso": "^2.0.4",
+    "webpack": "^3.8.1"
+  }
+}

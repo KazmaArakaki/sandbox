@@ -1,0 +1,14 @@
+.container {
+  padding: 8px 0 0;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.title_image {
+  width: 48px;
+  height: 48px;  
+}
